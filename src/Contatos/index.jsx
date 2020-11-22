@@ -1,6 +1,4 @@
 import React from 'react';
-import img1 from '../document/img/whatsapp.png';
-import img2 from '../document/img/email.png';
 import './style.css';
 
 const Contatos = () => {
@@ -8,11 +6,11 @@ const Contatos = () => {
         <>
       <div class="container d-flex justify-content-between">
         <div>
-          <img class="my-3 fot1" src={img1}/>
+          <img class="my-3 fot1" src="./img/email.png"/>
             <p>contato@fullstackeletro.com</p>
         </div>
         <div>
-        <img class="my-3 fot2" src={img2}/>
+        <img class="my-3 fot2" src="./img/whatsapp.png"/>
             <p>(11) 99999-99999</p>
         </div>
       </div>

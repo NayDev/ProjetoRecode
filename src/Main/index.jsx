@@ -1,7 +1,5 @@
 import React from 'react';
-import img1 from '../document/img/car1.jpg';
-import img2 from '../document/img/car2.jpg';
-import img3 from '../document/img/car3.jpg';
+
 
 
 //import './style.css';
@@ -21,13 +19,13 @@ const Main = () => {
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src={img1} class="d-block w-50 rounded fot" alt="Img1" />
+                            <img src="./img/car1.jpg" class="d-block w-50 rounded fot" alt="Img1" />
                         </div>
                         <div class="carousel-item">
-                            <img  src={img2} class="d-block w-50 rounded fot" alt="Img2" />
+                            <img  src="./img/car2.jpg" class="d-block w-50 rounded fot" alt="Img2" />
                         </div>
                         <div class="carousel-item">
-                            <img src={img3} class="d-block w-50 rounded fot" alt="Img3" />
+                            <img src="./img/car3.jpg" class="d-block w-50 rounded fot" alt="Img3" />
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
