@@ -2,14 +2,13 @@ import React from 'react';
 import img1 from '../document/img/car1.jpg';
 import img2 from '../document/img/car2.jpg';
 import img3 from '../document/img/car3.jpg';
-import Header from '../Header/index';
-import Footer from '../Footer/index';
-import './style.css';
+
+
+//import './style.css';
 
 const Main = () => {
     return(
-        <>
-        <Header />
+
         <div class="container-fluid">
             <h1 class="mt-4" id="msg_abertura"></h1>
             <p class="mt-2"> Aqui em nossa loja,<em>Programadores tem desconto!</em>nos produtos para sua casa!</p>
@@ -22,13 +21,13 @@ const Main = () => {
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src={img1} class="d-block w-100 rounded" alt="Geladeira" />
+                            <img src={img1} class="d-block w-50 rounded fot" alt="Img1" />
                         </div>
                         <div class="carousel-item">
-                            <img  src={img2} class="d-block w-100 rounded" alt="Fogão" />
+                            <img  src={img2} class="d-block w-50 rounded fot" alt="Img2" />
                         </div>
                         <div class="carousel-item">
-                            <img src={img3} class="d-block w-100 rounded" alt="Programador" />
+                            <img src={img3} class="d-block w-50 rounded fot" alt="Img3" />
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -42,8 +41,6 @@ const Main = () => {
                 </div>
             </div>
         </div>
-        <Footer />,
-        </>
     );
 }
 
