@@ -5,8 +5,9 @@ import Footer from '../Footer/index';
 import Produtos from '../Produtos/index';
 import Main from '../Main/index';
 import Lojas from '../Lojas/index';
-import Contatos from '../Contatos/index';
+import Mensagens from '../Mensagens/index';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 const App = () => {
     return(
@@ -17,7 +18,7 @@ const App = () => {
                 <Route exact path="/" component={Main}/>
                 <Route path="/produtos" component={Produtos}/>
                 <Route path="/lojas" component={Lojas}/>
-                <Route path="/contatos" component={Contatos}/>
+                <Route path="/mensagens" component={Mensagens}/>
             </Switch>
        </Router>
        <Footer />
