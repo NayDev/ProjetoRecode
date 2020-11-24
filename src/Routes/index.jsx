@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Header from '../Header/index';
-import Footer from '../Footer/index';
-import Produtos from '../Produtos/index';
-import Main from '../Main/index';
-import Lojas from '../Lojas/index';
-import Mensagens from '../Mensagens/index';
+import Header from '../components/Header/index';
+import Footer from '../components/Footer/index';
+import Produtos from '../components/Produtos/index';
+import Main from '../components/Main/index';
+import Lojas from '../components/Lojas/index';
+import Mensagens from '../components/Mensagens/index';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 

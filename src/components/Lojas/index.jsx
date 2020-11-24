@@ -1,5 +1,5 @@
 import React from 'react';
-//import './style.css';
+import './style.css';
 
 class Lojas extends React.Component {
 
@@ -12,7 +12,7 @@ class Lojas extends React.Component {
   }
 
   exibirLojas(){
-    fetch("http://localhost/fullstack/src/api/ClassLojas.php")
+    fetch("http://localhost/fullstack/src/backend/ClassLojas.php")
     .then((response) => response.json())
     .then((responseJson)=>{
       this.setState({
@@ -38,16 +38,16 @@ class BoxLojas extends React.Component {
     return(
       <>
       <h1 className="py-2">Nossas Lojas</h1>
-      <div className="row d-flex justify-content-between py-2">
+      <div className="row d-flex justify-content-between py-2 ">
         
         
         {this.props.arrayLojas.map(
           row=>
          
-          <div className="col-lg-3 col-md-4 col-xs-9 my-5">
+          <div className="col-lg-3 col-md-4 col-xs-9 my-5 text-white loj">
             
             <p>{row.cidade}</p>
-            <p>{row.endereco}</p>
+            <p>{row.logradoro}</p>
             <p>Número {row.numero}</p>
             <p>{row.andar}º andar</p>
             <p>{row.bairro}</p>

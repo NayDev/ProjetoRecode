@@ -1,8 +1,12 @@
+
+
 <?php
+
     include("ClassConexao.php");
 
 
 class ClassMensagens extends ClassConexao{
+    
     //Exibição de Produtos em um Json
     public function exibeMensagens(){
         $BFetch=$this->conectaDB()->prepare("select * from comentarios");
@@ -24,6 +28,14 @@ class ClassMensagens extends ClassConexao{
         header("Content-type: application/json");
         echo json_encode($M);
     }
+
+   
+    
 }
+  
+    
+
 $Mensagens=new ClassMensagens();
 $Mensagens->exibeMensagens();
+
+?>

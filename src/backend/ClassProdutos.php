@@ -13,7 +13,7 @@ class ClassProdutos extends ClassConexao{
 
         while($Fetch=$BFetch->fetch(PDO::FETCH_ASSOC)){
             $P[$I] = [
-                "idproduto"=>$Fetch['idproduto'],
+                "id_produto"=>$Fetch['id_produto'],
                 "categoria"=>$Fetch['categoria'],
                 "descricao"=>$Fetch['descricao'],
                 "imagem"=>$Fetch['imagem'],

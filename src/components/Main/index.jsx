@@ -5,6 +5,7 @@ import React from 'react';
 //import './style.css';
 
 const Main = () => {
+   
     return(
 
         <div class="container-fluid">
@@ -19,13 +20,13 @@ const Main = () => {
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="./img/car1.jpg" class="d-block w-50 rounded fot" alt="Img1" />
+                            <img src="./img/car1.jpg" class="d-block w-100 rounded fot" alt="Img1" />
                         </div>
                         <div class="carousel-item">
-                            <img  src="./img/car2.jpg" class="d-block w-50 rounded fot" alt="Img2" />
+                            <img  src="./img/car2.jpg" class="d-block w-100 rounded fot" alt="Img2" />
                         </div>
                         <div class="carousel-item">
-                            <img src="./img/car3.jpg" class="d-block w-50 rounded fot" alt="Img3" />
+                            <img src="./img/car3.jpg" class="d-block w-100 rounded fot" alt="Img3" />
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -39,7 +40,9 @@ const Main = () => {
                 </div>
             </div>
         </div>
+        
     );
+   
 }
 
 export default Main;

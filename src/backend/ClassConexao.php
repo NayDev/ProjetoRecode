@@ -10,3 +10,6 @@
         }
     }
 }
+
+//$res = $Con->query("INSERT INTO comentarios(nome,msg) VALUES($nome, $msg)");
+

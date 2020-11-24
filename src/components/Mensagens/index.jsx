@@ -9,10 +9,12 @@ class Mensagens extends React.Component {
       db:[]
     });
     this.exibirMensagens();
+    
+    
   }
 
   exibirMensagens(){
-    fetch("http://localhost/fullstack/src/api/ClassMensagens.php")
+    fetch("http://localhost/fullstack/src/backend/ClassMensagens.php")
     .then((response) => response.json())
     .then((responseJson)=>{
       this.setState({
@@ -22,6 +24,8 @@ class Mensagens extends React.Component {
     });
     
   }
+
+
   render(){
     return(
       <div className=" container-fluid">
@@ -35,16 +39,14 @@ class BoxMensagens extends React.Component {
     return(
       <>
       <h1 className="py-2">Mensagens</h1>
-        <div className="container">
-         
+        <div className="container ">
+          <div className="row d-flex justify-content-between py-3 ">
             <img className="img-fluid fot1" src="./img/email.png" />
-              <p>contato@fullstackeletro.com</p>
+              <p className="row d-flex justify-content-between py-3 m-0">contato@fullstackeletro.com</p>
                 <img className="img-fluid fot2" src="./img/whats.svg" />
-              <p>(11) 99999-99999</p>
-          
-        
-
-        <form className="container" method="post">
+              <p className="row d-flex justify-content-between py-3 m-0">(11) 99999-99999</p>
+          </div>
+        <form className="container" method="POST" action="mensagens">
           <div className="form-group">
             <label for="nome">Nome</label>
             <input type="text" name="nome" class="form-control" id="nome" aria-describedby="nome" placeholder="Digite seu nome" />

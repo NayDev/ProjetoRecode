@@ -15,7 +15,7 @@ class ClassLojas extends ClassConexao{
             $L[$I] = [
                 "id_loja"=>$Fetch['id_loja'],
                 "cidade"=>$Fetch['cidade'],
-                "endereco"=>$Fetch['endereco'],
+                "logradoro"=>$Fetch['logradoro'],
                 "numero"=>$Fetch['numero'],
                 "andar"=>$Fetch['andar'],
                 "bairro"=>$Fetch['bairro'],
