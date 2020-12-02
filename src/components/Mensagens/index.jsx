@@ -3,86 +3,109 @@ import './style.css';
 
 class Mensagens extends React.Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state=({
       db:[]
     });
     this.exibirMensagens();
-    
-    
   }
 
   exibirMensagens(){
     fetch("http://localhost/fullstack/src/backend/ClassMensagens.php")
     .then((response) => response.json())
-    .then((responseJson)=>{
+    .then((responseJson) => {
       this.setState({
         db: responseJson
       });
-      
     });
-    
   }
-
 
   render(){
     return(
       <div className=" container-fluid">
-        <BoxMensagens arrayMensagens={this.state.db} />
+        {/* puxa todos os dados do banco. */}
+        <CardMensagens arrayMensagens={this.state.db} /> 
       </div>
     );
   }
 }
-class BoxMensagens extends React.Component {
-  render(){
-    return(
-      <>
-      <h1 className="py-2">Mensagens</h1>
-        <div className="container ">
-          <div className="row d-flex justify-content-between py-3 ">
-            <img className="img-fluid fot1" src="./img/email.png" />
-              <p className="row d-flex justify-content-between py-3 m-0">contato@fullstackeletro.com</p>
-                <img className="img-fluid fot2" src="./img/whats.svg" />
-              <p className="row d-flex justify-content-between py-3 m-0">(11) 99999-99999</p>
+
+const CardMensagens = () => { // Função para Mensagens
+  const [student, setStudent] = React.useState([]) //Estou retornando todos os dados que vem do banco.
+  const [render, setRender] = React.useState(false) // Ele faz com q as msg apareça na tela
+  const [msg, setMsg] = React.useState(false)// Estou fazendo um POST e GET das mensagens
+
+  React.useEffect(async () => { // Fazendo uma promise
+      const url = "http://localhost/fullstack/src/backend/ClassMensagens.php";
+      const response = await fetch(url);
+      setStudent(await response.json());
+  }, [render]) // segundo parametro
+
+  function registerStudent(event){
+      event.preventDefault(); // para não recarregar a pag.
+      let formData = new FormData(event.target)
+
+      const url = "http://localhost/fullstack/src/backend/ClassMensagens.php";
+      
+      fetch(url, {//dois parametros POST
+          method:"POST",
+          body: formData
+      }).then((response) => response.json()).then((dados) => { //GET dos dados q estão no JSON.
+          setRender(!render); //Negação do render
+          setMsg(dados); //Configurado para verdadeiro
+          setTimeout(() => { //Colocando tempo para sair a mensagem
+              setMsg(false);
+          },2000)
+      })
+     
+  }
+
+  return (
+      <div className="container py-5">
+        <h2 className="mt-4 text-center">Escreva uma mensagem</h2>
+          <div className="card w-75 mx-auto border-0">
+          
+              <form onSubmit={registerStudent}>
+                
+                  <input className="form-control mt-2" type="text" name="nome" placeholder="Digite seu nome"/>
+                  <br/> 
+                  
+                  <textarea rows="3" cols="5" className="form-control mt-2" type="text" name="msg" placeholder="Digite sua mensagem"></textarea>
+                  <button className="btn btn-info w-100 mt-2">Enviar</button>
+              </form>
+              { msg && 
+                <div className="alert alert-success mx-auto mt-4 w-75" role="alert"> 
+                  Cadastro efetuado com sucesso! 
+                </div>
+              }
           </div>
-        <form className="container" method="POST" action="mensagens">
-          <div className="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" name="nome" class="form-control" id="nome" aria-describedby="nome" placeholder="Digite seu nome" />
-          </div>
-          <div className="form-group">
-            <label for="msg">Mensagem</label>
-            <textarea type="password" name="msg" class="form-control" id="msg" placeholder="Digite sua Mensagem"></textarea>
-          </div>
-            <button type="submit" name="submit"  value="Enviar" class="btn btn-primary">Enviar</button>
-        </form>
-        <h2 className="mt-4 text-center">Lista de Mensagem</h2>
-          <table class=" container table">
+          <h2 className="mt-4 text-center py-4">Lista de Mensagem</h2>
+              
+          <table className=" container table" id="lista">
             
-            <thead class="table-dark">
+           <thead className="table-dark">
               <tr>
                 <th>Data</th>
                 <th>Nome</th>
-                <th>Mensagem</th>
-              </tr>
+                 <th>Mensagem</th>
+               </tr>
             </thead>
             <tbody>
-            {this.props.arrayMensagens.map(
-              row=>
+
+          {student.map((element) => {
+            return (
               <tr>
-             
-             <th>{row.data}</th>
-             <td>{row.nome}</td>
-             <td>{row.msg}</td>
-           </tr>
-            )}
-              </tbody>
-          </table>
-          </div>
-      </>
-    );
-  }
+                <th>{element.data}</th>
+                <td>{element.nome}</td>
+                <td>{element.msg}</td>
+              </tr>
+            )
+          })}
+             </tbody>
+           </table>
+      </div>
+  );
 }
 
 export default Mensagens;

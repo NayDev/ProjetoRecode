@@ -4,3 +4,6 @@
 .fot2 {
     width: 15%;
 }
+textarea {
+    resize: none;
+  }

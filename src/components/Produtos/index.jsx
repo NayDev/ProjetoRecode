@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './style.css';
 
@@ -27,19 +27,12 @@ class Produtos extends React.Component {
 
   //----Evento clique
 
-  exibirTodos = () => {
+  exibirCategoria = (categoria) => {
     let elementos = document.getElementsByClassName('box_produto');
-
+   
     for (var i = 0; i < elementos.length; i++) {
-        elementos[i].style = "display:block";
-    }
-  }
-  exibirCategoria = (row) => {
-    let elementos = document.querySelector(.box_produto);
-    console.log(elementos);
-    for (var i = 0; i < elementos.length; i++) {
-        console.log(elementos[i]);
-        if (row == elementos[i].id) {
+        
+        if (categoria === elementos[i].id) {
             elementos[i].style = "display:block";
         } else {
             elementos[i].style = "display:none";
@@ -47,7 +40,15 @@ class Produtos extends React.Component {
 
     }
   }
+  exibirTodos = () => {
+    let elementos = document.getElementsByClassName('box_produto');
 
+    for (var i = 0; i < elementos.length; i++) {
+        ///elementos[i].style = "display:block";
+        elementos[i].style= "";
+    }
+  }
+ 
   render(){
     return(
       <div className=" container-fluid">
@@ -55,9 +56,9 @@ class Produtos extends React.Component {
           <a className="btn text-white dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Categorias
           </a>
-          <div className="dropdown-menu border-0 rounded" aria-labelledby="dropdownMenuLink">
-            <ul>
-                <li  className="dropdown-item" onClick={() => this.exibirTodos('todos')}>Todos(12)</li>
+          <div>
+            <ul className="dropdown-menu border-0 rounded" aria-labelledby="dropdownMenuLink">
+                <li   className="dropdown-item" onClick={() => this.exibirTodos('todos')}>Todos(12)</li>
                 <li  className="dropdown-item" onClick={() => this.exibirCategoria('geladeira')}>Geladeiras(3)</li>
                 <li  className="dropdown-item" onClick={() => this.exibirCategoria('fogao')}>Fogões(2)</li>
                 <li  className="dropdown-item" onClick={() => this.exibirCategoria('microondas')}>Microondas(3)</li>
@@ -74,8 +75,9 @@ class Produtos extends React.Component {
 }
 
 
-
 class BoxProdutos extends React.Component {
+ 
+ 
   
   render(){
     
@@ -84,9 +86,9 @@ class BoxProdutos extends React.Component {
       <div className="row d-flex justify-content-between py-4">
         {this.props.arrayProdutos.map(
           row=>
-          <div className="box_produto col-lg-4 col-md-3 col-xs-9 text-center" >
-            <img className="p-4 w-50" src={row.imagem} />
-            
+          <div id={row.categoria} className="box_produto col-lg-4 col-md-3 col-xs-9 text-center">
+            <img className="p-4 w-50" src={row.imagem}  />
+           
             <p>{row.descricao}</p>
             <p><s>R${row.preco}</s></p>
             <p className="text-danger h4 p-2">R${row.precofinal}</p>
