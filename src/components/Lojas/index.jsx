@@ -12,7 +12,7 @@ class Lojas extends React.Component {
   }
 
   exibirLojas(){
-    fetch("http://localhost/fullstack/src/backend/ClassLojas.php")
+    fetch("http://localhost/Projeto-React/src/backend/ClassLojas.php")
     .then((response) => response.json())
     .then((responseJson)=>{
       this.setState({

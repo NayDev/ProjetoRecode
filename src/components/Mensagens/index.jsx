@@ -12,7 +12,7 @@ class Mensagens extends React.Component {
   }
 
   exibirMensagens(){
-    fetch("http://localhost/fullstack/src/backend/ClassMensagens.php")
+    fetch("http://localhost/Projeto-React/src/backend/ClassMensagens.php")
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({
@@ -37,7 +37,7 @@ const CardMensagens = () => { // Função para Mensagens
   const [msg, setMsg] = React.useState(false)// Estou fazendo um POST e GET das mensagens
 
   React.useEffect(async () => { // Fazendo uma promise
-      const url = "http://localhost/fullstack/src/backend/ClassMensagens.php";
+      const url = "http://localhost/Projeto-React/src/backend/ClassMensagens.php";
       const response = await fetch(url);
       setStudent(await response.json());
   }, [render]) // segundo parametro
@@ -46,7 +46,7 @@ const CardMensagens = () => { // Função para Mensagens
       event.preventDefault(); // para não recarregar a pag.
       let formData = new FormData(event.target)
 
-      const url = "http://localhost/fullstack/src/backend/ClassMensagens.php";
+      const url = "http://localhost/Projeto-React/src/backend/ClassMensagens.php";
       
       fetch(url, {//dois parametros POST
           method:"POST",
