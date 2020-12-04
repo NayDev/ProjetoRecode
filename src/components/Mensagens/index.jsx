@@ -102,7 +102,7 @@ const CardMensagens = () => { // Função para Mensagens
           {student.map((element) => {
             return (
               <tr>
-                <th>{element.data}</th>
+                <th>{element.data_comentario}</th>
                 <td>{element.nome}</td>
                 <td>{element.msg}</td>
               </tr>

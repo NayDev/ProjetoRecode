@@ -15,7 +15,7 @@ class ClassMensagens extends ClassConexao{
           "id_comentario"=>$Fetch['id_comentario'],
           "nome"=>$Fetch['nome'],
           "msg"=>$Fetch['msg'],
-          "data"=>$Fetch['data'],
+          "data_comentario"=>$Fetch['data_comentario'],
         ];
         $I++;
       }
@@ -33,14 +33,12 @@ class ClassMensagens extends ClassConexao{
       $I = 0;
 
       while($Fetch=$BFetch->fetch(PDO::FETCH_ASSOC)){
-        if(isset($datastring['data'])){
-          $datastring['data'] = date_format(date_create_from_format('d/m/Y',$datastring['data']),"Y/m/d");
-      }
+     
         $M[$I] = [
           "id_comentario"=>$Fetch['id_comentario'],
           "nome"=>$Fetch['nome'],
           "msg"=>$Fetch['msg'],
-          "data"=>$Fetch['data'],
+          "data_comentario"=>$Fetch['data_comentario'],
         ];
         $I++;
       }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 04-Dez-2020 às 04:59
+-- Tempo de geração: 04-Dez-2020 às 18:00
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.3.22
 
@@ -53,14 +53,14 @@ CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `msg` varchar(255) NOT NULL,
-  `data` datetime DEFAULT current_timestamp()
+  `data_comentario` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `comentarios`
 --
 
-INSERT INTO `comentarios` (`id_comentario`, `nome`, `msg`, `data`) VALUES
+INSERT INTO `comentarios` (`id_comentario`, `nome`, `msg`, `data_comentario`) VALUES
 (1, 'Nayara Suelen Fernandes Lopes', 'asdsada', '2020-12-02 22:21:27'),
 (2, 'Homologar', 'teste', '2020-12-03 12:13:11'),
 (3, 'Cris', 'teste', '2020-12-03 12:13:35'),
@@ -71,7 +71,11 @@ INSERT INTO `comentarios` (`id_comentario`, `nome`, `msg`, `data`) VALUES
 (8, 'TESTETES', 'TESTETES', '2020-12-03 22:30:59'),
 (9, 'Eliana', 'Teste', '2020-12-03 23:46:23'),
 (10, 'Maria', 'Teste', '2020-12-03 23:49:51'),
-(11, 'Cristiano', 'Teste Formulario', '2020-12-03 23:50:26');
+(11, 'Cristiano', 'Teste Formulario', '2020-12-03 23:50:26'),
+(12, 'asdsada', 'adads', '2020-12-04 12:27:26'),
+(13, 'Desenvolvimento', 'weew', '2020-12-04 13:40:43'),
+(14, 'sssa', 'assaas', '2020-12-04 13:41:53'),
+(15, 'dsadsdad', 'adasdasd', '2020-12-04 13:46:42');
 
 -- --------------------------------------------------------
 
@@ -208,7 +212,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `lojas`
