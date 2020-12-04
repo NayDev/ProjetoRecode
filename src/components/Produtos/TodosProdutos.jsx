@@ -1,34 +1,18 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 
 export default class TodosProdutos extends React.Component {
-    constructor(props){
-      super(props);
-      
-    }
-  
 
-    exibirCategoria = (categoria) => {
-        let elementos = document.getElementsByClassName('box_produto');
-       
-        for (var i = 0; i < elementos.length; i++) {
-            
-            if (categoria === elementos[i].id) {
-                elementos[i].style = "display:block";
-            } else {
-                elementos[i].style = "display:none";
-            }
-    
-        }
-      }
 
+ 
       destaque = (event) => {
 
-        let tam = event.target.style.height
+        let tam = event.target.style.width
 
-        if(tam == "200px"){
-          event.target.style = "height: 150px"
+        if(tam === "200px"){
+          event.target.style = "width: 150px"
         }else{
-          event.target.style = "height: 200px"
+          event.target.style = "width: 200px"
         }
 
       }
@@ -40,8 +24,8 @@ export default class TodosProdutos extends React.Component {
           {this.props.arrayProdutos.map(
             row=>
             
-            <div id={row.categoria}  className="box_produto col-lg-4 col-md-3 col-xs-9 text-center" >
-              <img src={row.imagem} onMouseOut={this.destaque} onMouseOver={this.destaque} id={row.id_produto}/>
+            <div  className="box_produto col-lg-4 col-md-3 col-xs-9 text-center" id={row.id_categoria}>
+              <img width="150px" src={row.imagem} onMouseOut={this.destaque} onMouseOver={this.destaque} id={row.id_produto}/>
              
               <p>{row.descricao}</p>
               <p><s>R${row.preco}</s></p>

@@ -1,12 +1,13 @@
 <?php
     include("ClassConexao.php");
 
+
 class ClassProdutos extends ClassConexao{
     //Exibição de Produtos em um Json
     public function exibeProdutos(){
-        $BFetch=$this->conectaDB()->prepare("SELECT* FROM produtos AS p INNER JOIN categoria AS c ON p.id_categoria = c.id_categoria");
+        $BFetch=$this->conectaDB()->prepare("SELECT * FROM produtos AS p INNER JOIN categoria AS c ON p.id_categoria = c.id_categoria");
         $BFetch->execute();
-        
+
         $P = [];
         $I = 0;
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import './style.css';
 
@@ -35,7 +36,10 @@ const CardMensagens = () => { // Função para Mensagens
   const [student, setStudent] = React.useState([]) //Estou retornando todos os dados que vem do banco.
   const [render, setRender] = React.useState(false) // Ele faz com q as msg apareça na tela
   const [msg, setMsg] = React.useState(false)// Estou fazendo um POST e GET das mensagens
+  const [nome, setNome] = React.useState(""); 
+  const [mensagem, setMensagens] = React.useState(""); 
 
+  
   React.useEffect(async () => { // Fazendo uma promise
       const url = "http://localhost/Projeto-React/src/backend/ClassMensagens.php";
       const response = await fetch(url);
@@ -52,7 +56,9 @@ const CardMensagens = () => { // Função para Mensagens
           method:"POST",
           body: formData
       }).then((response) => response.json()).then((dados) => { //GET dos dados q estão no JSON.
-          setRender(!render); //Negação do render
+          setRender(!render);//Negação do render
+          setMensagens(""); 
+          setNome(""); 
           setMsg(dados); //Configurado para verdadeiro
           setTimeout(() => { //Colocando tempo para sair a mensagem
               setMsg(false);
@@ -68,10 +74,10 @@ const CardMensagens = () => { // Função para Mensagens
           
               <form onSubmit={registerStudent}>
                 
-                  <input className="form-control mt-2" type="text" name="nome" placeholder="Digite seu nome"/>
+                  <input value={nome} onChange={(event) => setNome(event.target.value)}  className="form-control mt-2" type="text" name="nome" placeholder="Digite seu nome"/>
                   <br/> 
                   
-                  <textarea rows="3" cols="5" className="form-control mt-2" type="text" name="msg" placeholder="Digite sua mensagem"></textarea>
+                  <textarea value={mensagem} onChange={(event) => setMensagens(event.target.value)} rows="3" cols="5" className="form-control mt-2" type="text" name="msg" placeholder="Digite sua mensagem"></textarea>
                   <button className="btn btn-info w-100 mt-2">Enviar</button>
               </form>
               { msg && 

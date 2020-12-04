@@ -26,12 +26,16 @@ class ClassMensagens extends ClassConexao{
 
     public function carregarMensagens(){
       $BFetch=$this->conectaDB()->prepare("select * from comentarios");
+      //SELECT date_format(data,'%d/%m/%Y as %H:%ihs') as Data, nome, msg FROM `comentarios`
       $BFetch->execute();
 
       $M = [];
       $I = 0;
 
       while($Fetch=$BFetch->fetch(PDO::FETCH_ASSOC)){
+        if(isset($datastring['data'])){
+          $datastring['data'] = date_format(date_create_from_format('d/m/Y',$datastring['data']),"Y/m/d");
+      }
         $M[$I] = [
           "id_comentario"=>$Fetch['id_comentario'],
           "nome"=>$Fetch['nome'],
@@ -53,10 +57,10 @@ class ClassMensagens extends ClassConexao{
         $conexao = $this->conectaDB();
 
         $sql = "insert  into comentarios (nome, msg) values ('$nome','$msg')";
-        $result = $conexao->query($sql);
+        $conexao->query($sql);
     }
 
-    $teste = array('teste'=>'testando');
+   
       $M[] = [
         "resultado"=> $this->carregarMensagens(),
         //"resultado"=>$result,

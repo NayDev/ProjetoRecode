@@ -1,12 +1,12 @@
 import React from 'react';
-
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from '../components/Header/index';
 import Footer from '../components/Footer/index';
 import Produtos from '../components/Produtos/index';
 import Main from '../components/Main/index';
 import Lojas from '../components/Lojas/index';
 import Mensagens from '../components/Mensagens/index';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 
 
 const App = () => {
