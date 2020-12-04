@@ -4,7 +4,7 @@
 class ClassMensagens extends ClassConexao{
     //Exibição de Produtos em um Json
     public function exibeMensagens(){
-      $BFetch=$this->conectaDB()->prepare("select * from comentarios");
+      $BFetch=$this->conectaDB()->prepare("SELECT id_comentario,nome, msg,date_format(data_comentario, '%d/%m/%Y as %H:%ihs') as data_comentario FROM comentarios");
       $BFetch->execute();
 
       $M = [];
@@ -26,7 +26,7 @@ class ClassMensagens extends ClassConexao{
 
     public function carregarMensagens(){
       $BFetch=$this->conectaDB()->prepare("select * from comentarios");
-      //SELECT date_format(data,'%d/%m/%Y as %H:%ihs') as Data, nome, msg FROM `comentarios`
+      
       $BFetch->execute();
 
       $M = [];
