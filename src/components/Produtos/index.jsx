@@ -13,7 +13,7 @@ class Produtos extends React.Component {
   }
 
   exibirProdutos(){
-    fetch("http://localhost/Projeto-React/src/backend/ClassProdutos.php")
+    fetch("http://localhost/Projeto-React/backend/ClassProdutos.php")
     .then((response) => response.json())
     .then((responseJson)=>{
       this.setState({
