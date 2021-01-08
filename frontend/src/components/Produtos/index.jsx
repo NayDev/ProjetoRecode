@@ -1,77 +1,57 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
-import TodosProdutos from './TodosProdutos.jsx';
+import { useState, useEffect } from "react";
 
-class Produtos extends React.Component {
 
-  constructor(){
-    super();
-    this.state=({
-      db:[]
-    });
-    this.exibirProdutos();
-  }
-
-  exibirProdutos(){
-    fetch("http://localhost/Projeto-React/backend/ClassProdutos.php")
-    .then((response) => response.json())
-    .then((responseJson)=>{
-      this.setState({
-        db: responseJson
-      });
-      
-    });
-    
-  }
-
-  //----Evento clique
-
-  exibirCategoria = (event) => {
-   
-    let elementos = document.getElementsByClassName('box_produto');
-    let item = event.target.id;
-    for (var i = 0; i < elementos.length; i++) {
-        
-        if (item == elementos[i].id) {
-            elementos[i].style.display = "inline-block";
-        } else {
-            elementos[i].style.display = "none";
-        }
+export default function Produtos() {
+  const [produtos, setProdutos] = useState([]);
+  
+  useEffect(function () {
+    async function getProdutos() {
+      const url = "http://localhost/Projeto-React/backend/ClassProdutos.php";
+      const response = await fetch(url);
+      const dados = await response.json();
+      setProdutos(dados);
     }
-  }
-  exibirTodos = () => {
-    let elementos = document.getElementsByClassName('box_produto');
+    getProdutos();
+  }, []);
 
-    for (var i = 0; i < elementos.length; i++) {
-      elementos[i].style= "";
-    }
-  }
- 
-  render(){
-    return(
-      <>
-      <div className=" container-fluid">
-        <div className="dropdown d-flex justify-content-center p-5">
-          <a className="btn text-white dropdown-toggle " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Categorias
+  return (
+    <>
+      <div className="container">
+        <div className="dropdown-show d-flex justify-content-center my-4">
+          <a className="btn dropdown-toggle text-white d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categorias
           </a>
           <div>
-            <ul className="dropdown-menu border-0 rounded" aria-labelledby="dropdownMenuLink">
-              <li className="dropdown-item" onClick={this.exibirTodos}>Todos(12)</li>
-              <li  className="dropdown-item" id="1" onClick={this.exibirCategoria}>Geladeiras(3)</li>
-              <li  className="dropdown-item" id="2" onClick={this.exibirCategoria}>Fogões(2)</li>
-              <li  className="dropdown-item" id="3" onClick={this.exibirCategoria}>Microondas(3)</li>
-              <li  className="dropdown-item" id="4" onClick={this.exibirCategoria}>Lavadora de Roupas(2)</li>
-              <li  className="dropdown-item" id="5" onClick={this.exibirCategoria}>Lava Louças(2)</li>
+            <ul  className="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
+              <li className="dropdown-item">Todos(12)</li>
+              <li  className="dropdown-item" id="1">Geladeiras(3)</li>
+              <li  className="dropdown-item" id="2">Fogões(2)</li>
+              <li  className="dropdown-item" id="3">Microondas(3)</li>
+              <li  className="dropdown-item" id="4">Lavadora de Roupas(2)</li>
+              <li  className="dropdown-item" id="5">Lava Louças(2)</li>
             </ul>
           </div>
         </div>
-        <TodosProdutos arrayProdutos={this.state.db} />
       </div>
-      </>
-    );
-  }
+      <div className="row d-flex justify-content-between py-4">
+        {produtos.map(function (produto) {
+          return (
+            <div
+              key={produto.id}
+              id={produto.id}
+              className="col-lg-4 col-md-3 col-xs-9 text-center"
+            >
+              <img width="150px" src={produto.imagem} id={produto.id_produto} />
+              <p>{produto.descricao}</p>
+              <p>R$:
+                <s>{produto.preco}</s>
+              </p>
+              <p className="text-danger h4 p-2">R$: {produto.precofinal}</p>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+  
 }
-
-
-export default Produtos;

@@ -1,64 +1,36 @@
-import React from 'react';
-import './style.css';
+import { useState, useEffect } from "react";
+import "./style.css";
 
-class Lojas extends React.Component {
+export default function Lojas() {
+  const [lojas, setLojas] = useState([]);
 
-  constructor(){
-    super();
-    this.state=({
-      db:[]
-    });
-    this.exibirLojas();
-  }
+  useEffect(function () {
+    async function getLojas() {
+      const url = "http://localhost/Projeto-React/backend/ClassLojas.php";
+      const response = await fetch(url);
+      const dados = await response.json();
+      setLojas(dados);
+    }
+    getLojas();
+  }, []);
 
-  exibirLojas(){
-    fetch("http://localhost/Projeto-React/backend/ClassLojas.php")
-    .then((response) => response.json())
-    .then((responseJson)=>{
-      this.setState({
-        db: responseJson
-      });
-      
-    });
-    
-  }
-  
-
-  render(){
-    return(
-      <div className=" container-fluid">
-        <BoxLojas arrayLojas={this.state.db} />
-      </div>
-    );
-  }
-}
-
-class BoxLojas extends React.Component {
-  render(){
-    return(
-      <>
+  return (
+    <>
       <h1 className="py-2">Nossas Lojas</h1>
-      <div className="row d-flex justify-content-between py-2 ">
-        
-        
-        {this.props.arrayLojas.map(
-          row=>
-         
-          <div className="col-lg-3 col-md-4 col-xs-9 my-5 text-white loj">
-            
-            <p>{row.cidade}</p>
-            <p>{row.logradoro}</p>
-            <p>Número {row.numero}</p>
-            <p>{row.andar}º andar</p>
-            <p>{row.bairro}</p>
-            <p>{row.telefone}</p>
-          </div>
-        )}
+      <div className="row d-flex justify-content-around">
+        {lojas.map(function (row) {
+          return (
+            <div key={row.id_loja} id={row.id} className="col-lg-3 col-md-3 col-xs-6 text-center my-5 text-white text-center loj">
+              <p>{row.cidade}</p>
+              <p>{row.logradoro}</p>
+              <p>Número {row.numero}</p>
+              <p>{row.andar}º andar</p>
+              <p>{row.bairro}</p>
+              <p>{row.telefone}</p>
+            </div>
+          );
+        })}
       </div>
-      </>
-    );
-  }
+    </>
+  );
 }
-
-
-export default Lojas;
