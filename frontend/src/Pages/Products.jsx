@@ -14,6 +14,19 @@ export default function Produtos() {
     getProdutos();
   }, []);
 
+  let produt = document.getElementsByClassName('prod');
+
+  const exibir = (event) => {
+    let item = event.target.id;
+    for (let i = 0; i < produt.length; i++) {
+        if (item === produt[i].id) {
+            produt[i].style.display = "inline-block";
+        } else {
+            produt[i].style.display = "none";
+        }
+    }
+}
+
   return (
     <>
       <div className="container">
@@ -21,7 +34,7 @@ export default function Produtos() {
           <a className="btn dropdown-toggle text-white d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Categorias
           </a>
-          <div>
+          <div className="prod " onClick={exibir} id="id_categoria">
             <ul  className="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
               <li className="dropdown-item">Todos(12)</li>
               <li  className="dropdown-item" id="1">Geladeiras(3)</li>
@@ -33,13 +46,13 @@ export default function Produtos() {
           </div>
         </div>
       </div>
-      <div className="row d-flex justify-content-between py-4">
+      <div className="row d-flex justify-content-between py-4" >
         {produtos.map(function (produto) {
           return (
             <div
               key={produto.id}
               id={produto.id}
-              className="col-lg-4 col-md-3 col-xs-9 text-center"
+              className="col-lg-4 col-md-3 col-xs-9 text-center"  id={produto.id_categoria} 
             >
               <img width="150px" src={produto.imagem} id={produto.id_produto} />
               <p>{produto.descricao}</p>

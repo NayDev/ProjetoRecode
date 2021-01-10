@@ -1,10 +1,7 @@
 import React from 'react';
 
 
-
-//import './style.css';
-
-const Main = () => {
+export default function Home () {
    
     return(
 
@@ -44,5 +41,3 @@ const Main = () => {
     );
    
 }
-
-export default Main;
