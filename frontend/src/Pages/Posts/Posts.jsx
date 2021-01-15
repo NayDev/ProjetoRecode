@@ -10,14 +10,14 @@ export default function Mensagens() {
 
   useEffect(async () => {
     // Fazendo uma promise
-    const url = "http://localhost/Projeto-React/backend/ClassMensagens.php";
+    const url = "http://localhost:3001/mensagens";
     const response = await fetch(url);
     setStudent(await response.json());
   }, [render]); // segundo parametro
 
   useEffect(function () {
     async function getMensagens() {
-      const url = "http://localhost/Projeto-React/backend/ClassMensagens.php";
+      const url = "http://localhost:3001/mensagens";
       const response = await fetch(url);
       const dados = await response.json();
       setMensagens(dados);
@@ -31,7 +31,7 @@ export default function Mensagens() {
     event.preventDefault(); // para não recarregar a pag.
     let formData = new FormData(event.target);
 
-    const url = "http://localhost/Projeto-React/backend/ClassMensagens.php";
+    const url = "http://localhost:3001/mensagens";
 
     fetch(url, {
       //dois parametros POST

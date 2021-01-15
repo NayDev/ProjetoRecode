@@ -6,7 +6,7 @@ export default function Lojas() {
 
   useEffect(function () {
     async function getLojas() {
-      const url = "http://localhost/Projeto-React/backend/ClassLojas.php";
+      const url = "http://localhost:3001/stores";
       const response = await fetch(url);
       const dados = await response.json();
       setLojas(dados);
