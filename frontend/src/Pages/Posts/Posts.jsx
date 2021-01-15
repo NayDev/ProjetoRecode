@@ -36,6 +36,9 @@ export default function Mensagens() {
     fetch(url, {
       //dois parametros POST
       method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: formData,
     })
       .then((response) => response.json())
@@ -69,7 +72,7 @@ export default function Mensagens() {
             <br />
 
             <textarea
-            value={mensagem}
+            value={mensagem.msg}
               onChange={(event) => setMensagens(event.target.value)}
               rows="3"
               cols="5"
