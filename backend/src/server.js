@@ -4,8 +4,9 @@ import mysql from 'mysql';
 
 const server = express();
 
-server.use(express.json());
 server.use(cors());
+server.use(express.json());
+
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -45,12 +46,14 @@ server.get("/mensagens", (req, res) => {
 });
 
 server.post("/mensagens", (req, res) => {
-    const { name, msg } = req.body;
-    connection.query(`INSERT INTO comentarios(name, msg) values ('${name}', '${msg})`, (error, result) => {
+    
+    const { nome, msg } = req.body;
+    const sql = `INSERT INTO comentarios(nome, msg) values ('${nome}', '${msg}')`;
+    connection.query(sql, (error, result) => {
       if(error){
-        res.send("Erro ao inserir User")
+        res.json({msg:"Erro ao inserir User"})
       } else{
-        res.send("Usuario Cadastrado")
+        res.json(result)
       }
     })
   });

@@ -6,7 +6,8 @@ export default function Mensagens() {
   const [render, setRender] = useState(false); // Ele faz com q as msg apareça na tela
   const [msg, setMsg] = useState(false); // Estou fazendo um POST e GET das mensagens
   const [nome, setNome] = useState("");
-  const [mensagem, setMensagens] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  
 
   useEffect(async () => {
     // Fazendo uma promise
@@ -15,37 +16,38 @@ export default function Mensagens() {
     setStudent(await response.json());
   }, [render]); // segundo parametro
 
-  useEffect(function () {
-    async function getMensagens() {
-      const url = "http://localhost:3001/mensagens";
-      const response = await fetch(url);
-      const dados = await response.json();
-      setMensagens(dados);
-    }
-    getMensagens();
-  }, []);
+  // useEffect(function () {
+  //   async function getMensagens() {
+  //     const url = "http://localhost:3001/mensagens";
+  //     const response = await fetch(url);
+  //     const dados = await response.json();
+  //     setMensagem(dados);
+  //   }
+  //   getMensagens();
+  // }, []);
 
 
 
   function registerStudent(event) {
     event.preventDefault(); // para não recarregar a pag.
-    let formData = new FormData(event.target);
-
+    let formData = {
+      nome: nome,
+      msg: mensagem
+    };
     const url = "http://localhost:3001/mensagens";
-
     fetch(url, {
       //dois parametros POST
       method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: formData,
+      body: JSON.stringify(formData)
     })
       .then((response) => response.json())
       .then((dados) => {
         //GET dos dados q estão no JSON.
         setRender(!render); //Negação do render
-        setMensagens("");
+        setMensagem("");
         setNome("");
         setMsg(dados); //Configurado para verdadeiro
         setTimeout(() => {
@@ -72,8 +74,8 @@ export default function Mensagens() {
             <br />
 
             <textarea
-            value={mensagem.msg}
-              onChange={(event) => setMensagens(event.target.value)}
+              value={mensagem}
+              onChange={(event) => setMensagem(event.target.value)}
               rows="3"
               cols="5"
               className="form-control mt-2"
