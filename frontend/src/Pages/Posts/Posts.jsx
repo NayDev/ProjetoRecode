@@ -16,18 +16,6 @@ export default function Mensagens() {
     setStudent(await response.json());
   }, [render]); // segundo parametro
 
-  // useEffect(function () {
-  //   async function getMensagens() {
-  //     const url = "http://localhost:3001/mensagens";
-  //     const response = await fetch(url);
-  //     const dados = await response.json();
-  //     setMensagem(dados);
-  //   }
-  //   getMensagens();
-  // }, []);
-
-
-
   function registerStudent(event) {
     event.preventDefault(); // para não recarregar a pag.
     let formData = {
