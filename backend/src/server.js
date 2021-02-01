@@ -36,7 +36,7 @@ server.get("/stores", (req, res) => {
 });
 
 server.get("/mensagens", (req, res) => {
-    connection.query("SELECT * FROM comentarios", (error, result) => {
+    connection.query("SELECT id_comentario,nome, msg,date_format(data_comentario, '%d/%m/%Y as %H:%ihs') as data_comentario FROM comentarios", (error, result) => {
        if(error) {
           res.send(error) 
        } else{
